@@ -38,6 +38,7 @@ public class ChangeReturn {
             solution.put(2L, 4L);
             amount = 0;
         } else {
+            numberOfBills=0;
             while (amount > 0) { // ici on enlève que par 2 ce qu'il reste
                 numberOfBills++;
                 solution.put(2L,numberOfBills);
