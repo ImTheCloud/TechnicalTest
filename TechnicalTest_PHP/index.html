@@ -4,15 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Change Calculation</title>
+
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: sans-serif;
             background-color: #f4f4f4;
-            margin: 20px;
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
         }
 
         #calculator {
@@ -20,28 +22,32 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            text-align: center;
+            width: 80%;
             max-width: 400px;
-            width: 100%;
+            margin: 0 auto;
+            text-align: center;
         }
 
         h2 {
             color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
         }
 
         form {
-            margin-top: 20px;
+            margin-bottom: 20px;
         }
 
         label {
             display: block;
             margin-bottom: 10px;
+            font-size: 16px;
             color: #555;
         }
-        
+
         input {
             padding: 10px;
-            width: calc(100% - 20px);
+            width: 100%;
             box-sizing: border-box;
             margin-bottom: 15px;
             border: 1px solid #ddd;
@@ -55,6 +61,7 @@
             border: none;
             cursor: pointer;
             border-radius: 4px;
+            font-size: 16px;
         }
 
         button:hover {
@@ -62,7 +69,7 @@
         }
 
         #resultContainer {
-            margin-top: 20px;
+            margin-bottom: 20px;
             text-align: left;
         }
 
@@ -75,10 +82,12 @@
 
         .solution {
             color: #4caf50;
+            font-weight: bold;
         }
 
         .error {
             color: #f44336;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -88,7 +97,7 @@
     <h2>Change Calculation</h2>
     <form id="changeForm">
         <label for="amount">Enter an amount to test:</label>
-        <input type="text" id="amount" name="amount" required>
+        <input type="number" id="amount" name="amount" required>
         <button type="button" onclick="calculateChange()">Test</button>
     </form>
 
@@ -96,21 +105,31 @@
 </div>
 
 <script>
-function calculateChange() {
-    var amount = document.getElementById("amount").value;
-
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            document.getElementById("resultContainer").innerHTML = xhr.responseText;
+    function calculateChange() {
+        // Récupérer le montant saisi par l'utilisateur
+        var amount = parseFloat(document.getElementById("amount").value);
+    
+        // Vérifier si le montant est un nombre valide
+        if (isNaN(amount)) {
+            document.getElementById("resultContainer").innerHTML = "<p class='error'>Veuillez entrer un montant valide.</p>";
+            return;
         }
-    };
-
-    xhr.open("POST", "backend.php", true);
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.send("amount=" + amount);
-}
-</script>
+    
+        // Effectuer une requête XMLHttpRequest pour obtenir les résultats du backend
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                // Afficher les résultats dans le conteneur dédié
+                document.getElementById("resultContainer").innerHTML = xhr.responseText;
+            }
+        };
+    
+        // Configurer et envoyer la requête au backend PHP
+        xhr.open("POST", "backend.php", true);
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhr.send("amount=" + amount);
+    }
+    </script>
 
 </body>
 </html>
