@@ -11,7 +11,7 @@ public class ChangeReturnTest {
         testChangeForAmount(10L, map(10L, 1L));
         testChangeForAmount(11L, map(5L, 1L, 2L, 3L));
         testChangeForAmount(21L, map(10L, 1L, 5L, 1L, 2L, 3L));
-        testChangeForAmount(23L, map(10L, 1L, 5L, 1L, 4L, 2L));
+        testChangeForAmount(23L, map(10L, 1L, 5L, 1L, 2L, 4L));
         testChangeForAmount(31L, map(10L, 2L, 5L, 1L, 2L, 3L));
     }
 

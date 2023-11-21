@@ -4,7 +4,7 @@ import java.util.Map;
 public class ChangeReturn {
 
     public static void main(String[] args) { // point d'entrée du programme
-        giveChange(1L); // test
+        giveChange(9L); // test
         giveChange(6L);
         giveChange(10L);
         //giveChange(9007199254740991L);
@@ -30,19 +30,19 @@ public class ChangeReturn {
             solution.put(5L, 1L);
             amount -= 5; // on enlève forcément 5
         }
-
         if (amount == 6) { // si on arrive à un 6, on ne peut pas enlever 5 car il restera 1 et ce sera impossible
             // alors 6 est une exception et par défaut, il aura 3 pièces de 2
             solution.put(2L, 3L);
             amount = 0;
-        } else if (amount == 8) { // similaire pour le 6, la 2e exception c'est pour le 8
-            solution.put(4L, 2L);
+        } else if (amount == 8) { // similaire que pour le 6, la 2e exception c'est pour le 8
+            solution.put(2L, 4L);
             amount = 0;
         } else {
             while (amount > 0) { // ici on enlève que par 2 ce qu'il reste
                 numberOfBills++;
-                solution.put(numberOfBills,2L);
+                solution.put(2L,numberOfBills);
                 amount -= 2;
+
             }
         }
 
