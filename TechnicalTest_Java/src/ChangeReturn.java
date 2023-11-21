@@ -4,7 +4,7 @@ import java.util.Map;
 public class ChangeReturn {
 
     public static void main(String[] args) { // point d'entrée du programme
-        giveChange(9L); // test
+        giveChange(1L); // test
         giveChange(6L);
         giveChange(10L);
         //giveChange(9007199254740991L);
