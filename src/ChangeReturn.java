@@ -4,7 +4,7 @@ import java.util.Map;
 public class ChangeReturn {
 
     public static void main(String[] args) { // point d'entrée du programme
-        giveChange(33L); // test
+        giveChange(1L); // test
         giveChange(6L);
         giveChange(10L);
         //giveChange(9007199254740991L);
@@ -19,7 +19,7 @@ public class ChangeReturn {
             // on commence par une boucle while à 13 car c'est le plus gros problème dans cet exercice
             // car si on a 13, on va vouloir diviser par 10 et il restera 3, et ce sera impossible de rendre la monnaie
             // similaire pour 11, donc on va enlever 10 du montant jusqu'à avoir quelque chose en dessous ou égal à 13
-            // pour le 12, c'est une exception pour avoir le montant le plus optimal si c'est pile 12
+            // pour le 12, c'est une exception pour avoir le montant le plus optimal si c'est pile 12 ou 10
             numberOfBills++; // ajoute le nombre de fois que l'on enlève 10
             solution.put(10L, numberOfBills); // ajoute dans la hashmap
             amount -= 10; // soustraction pour la boucle
