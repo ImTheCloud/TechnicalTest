@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $solution[2] = 3;
             $amount = 0;
         } elseif ($amount == 8) {
-            $solution[4] = 2;
+            $solution[2] = 4;
             $amount = 0;
         } else {
             $numberOfBills = 0;
